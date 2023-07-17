@@ -1,0 +1,10 @@
+Django
+matplotlib
+numpy
+opencv_python
+pandas
+Pillow
+pyserial
+python_dateutil
+ultralytics
+xhtml2pdf

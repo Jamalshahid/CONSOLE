@@ -1,0 +1,70 @@
+{% load static %}
+
+                     
+    {% if result == "Acceptable" %}
+    <img src="{% static 'images/success.gif' %}" id="status_image_popup">
+    {%elif result == "Marginal"%}
+    <img src="{% static 'images/marginal.gif' %}" id="status_image_popup">
+    {% else %}
+    <img src="{% static 'images/failure.gif' %}" id="status_image_popup">
+    {% endif %}
+        
+
+    {% comment %} <img src="{% static 'images/success.gif' %}" id="status_image_popup"> {% endcomment %}
+    <div class="cdsp">
+        <div class="cdspContainer">
+
+            <div class="cdsppopupView" style="overflow-y: scroll;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>DOB</th>
+                            <th>SOB</th>
+                            <th>POB</th>
+                            <th>Check</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for data in entries %}
+                        <tr>
+                            <td>{{data.dob}}</td>
+                            <td>{{data.pob}}</td>
+                            <td>{{data.sob}}</td>
+                            {% if data.res == "Acceptable" %}
+                                <td><span style="color:rgb(0, 88, 0);">&#x2713;</span></td> {% comment %} for Acceptable tick {% endcomment %}
+                            {% elif data.res == "Unacceptable"%}
+                            <td><span style="color:#ff4d5b;">&#215;</span></td>
+                            {%else%}
+                                <td><span style="color:#fda117;">&#33;</span></td>
+                            {% endif %}
+                        </tr>
+                        {% endfor %}
+                        {% comment %} <tr>
+                            <td>Dent On Bottle</td>
+                            <td>Acceptable</td>
+                            <td><span style="color:#fda117;">&#33;</span></td> #for exclamanation mark
+                        </tr> {% endcomment %}
+                        {% comment %} <tr>
+                            <td>Scuff On Bottle</td>
+                            <td>Acceptable</td>
+                            <td><span style="color:#fda117;">&#9679;</span></td> #for Circle
+                        </tr>
+                        <tr>
+                            <td>Product On Bottle</td>
+                            <td>Acceptable</td>
+                            <td><span style="color:#ff4d5b;">&#215;</span></td> #Cross
+                        </tr> {% endcomment %}
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+    <button class="buttonPopup" onclick="closePopup()">Okay</button>
+<script>
+
+            function closePopup() {
+                popup.classList.remove("open-popup");
+            }
+</script>

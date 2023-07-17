@@ -1,0 +1,81 @@
+{% comment %} {% load static %}
+<div class="card-body p-0">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Defect</th>
+            <th>Result</th>
+            <th style="width: 40px"></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for entry in entries %}
+        <tr>
+            <td>{{ entry.defect_name }}</td>
+            <td>{{ entry.defect_result }}</td>
+            {% if entry.defect_result == "Acceptable" %}
+                <td><b><i class="fa fa-check" style="color: #317631 !important;" aria-hidden="true"></i></b></td>
+            {% else %}
+                <td><b><i class="fa fa-times" style="color: #f00 !important;" aria-hidden="true"></i></b></td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+</div>
+
+<center>
+    <br>
+    {% if result == "Acceptable" %}
+    <img src="{% static 'images/success.gif' %}" style="width: 200px;">
+    {% else %}
+    <img src="{% static 'images/failure.gif' %}" style="width: 200px;">
+    {% endif %}
+</center> {% endcomment %}
+
+
+{% comment %} Maaz's Work {% endcomment %}
+{% load static %}
+<!-- <link rel="stylesheet" href="./static/reports.css"> -->
+<div class="card-body p-0">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Defect</th>
+                <th>Result</th>
+                <th style="display: flex; justify-content: center;">Check</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entry in entries %}
+        <tr>
+            <td>{{ entry.defect_name }}</td>
+            
+            <td>{{ entry.defect_result }}</td>
+
+            {% if entry.defect_result == "Acceptable" %}
+                <td style="display: flex; justify-content:center;"><b><i class="fa fa-check" style="color: #317631 !important;" aria-hidden="true"></i></b></td>
+            {%elif entry.defect_result == "Marginal"%}  
+                <td style="display: flex; justify-content:center;"><b><i class="fa fa-circle" style="color: rgb(255, 153, 0);" aria-hidden="true"></i></b></td>
+            {% else %}
+                <td style="display: flex; justify-content:center;"><b><i class="fa fa-times" style="color: #f00 !important;" aria-hidden="true"></i></b></td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+</div>
+
+
+<center>
+    <br>
+    {% if result == "Acceptable" %}
+    <img src="{% static 'images/success.gif' %}" style="width: 200px;">
+    {%elif result == "Marginal"%}
+    <img src="{% static 'images/marginal.gif' %}" style="width: 200px;">
+    {% else %}
+    <img src="{% static 'images/failure.gif' %}" style="width: 200px;">
+    {% endif %}
+</center>
